@@ -9,6 +9,8 @@ import flash.display.Sprite;
  */
 public class SimpleButton extends Sprite {
 
+
+
     /**
      * @param content is DisplayObject, because all we need is just width/height
      */

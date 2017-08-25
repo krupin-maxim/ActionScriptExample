@@ -1,4 +1,5 @@
 package resources {
+import flash.display.Bitmap;
 
 /**
  * This class contains all images from "../../resources/images"
@@ -6,10 +7,20 @@ package resources {
  */
 public class Images {
 
+    public static function getImage(name:Class):Bitmap {
+        return new name();
+    }
+
 // ------------- Common
 
     [Embed(source="../../resources/images/disable.png")]
     public static var disable_png:Class;
+    [Embed(source="../../resources/images/icon_experience.png")]
+    public static var icon_experience_png:Class;
+    [Embed(source="../../resources/images/icon_gold.png")]
+    public static var icon_gold_png:Class;
+    [Embed(source="../../resources/images/icon_silver.png")]
+    public static var icon_silver_png:Class;
 
 // ------------- Gold
 
@@ -35,7 +46,14 @@ public class Images {
 
 // ------------- Silver
 
-
+    [Embed(source="../../resources/images/silver_disable.png")]
+    public static var silver_disable_png:Class;
+    [Embed(source="../../resources/images/silver_hover.png")]
+    public static var silver_hover_png:Class;
+    [Embed(source="../../resources/images/silver_normal.png")]
+    public static var silver_normal_png:Class;
+    [Embed(source="../../resources/images/silver_press.png")]
+    public static var silver_press_png:Class;
 
 }
 }
