@@ -1,0 +1,41 @@
+package resources {
+
+/**
+ * This class contains all images from "../../resources/images"
+ * It is good practice to generate this
+ */
+public class Images {
+
+// ------------- Common
+
+    [Embed(source="../../resources/images/disable.png")]
+    public static var disable_png:Class;
+
+// ------------- Gold
+
+    [Embed(source="../../resources/images/gold_disable.png")]
+    public static var gold_disable_png:Class;
+    [Embed(source="../../resources/images/gold_hover.png")]
+    public static var gold_hover_png:Class;
+    [Embed(source="../../resources/images/gold_normal.png")]
+    public static var gold_normal_png:Class;
+    [Embed(source="../../resources/images/gold_press.png")]
+    public static var gold_press_png:Class;
+
+// ------------- Green
+
+    [Embed(source="../../resources/images/green_disable.png")]
+    public static var green_disable_png:Class;
+    [Embed(source="../../resources/images/green_hover.png")]
+    public static var green_hover_png:Class;
+    [Embed(source="../../resources/images/green_normal.png")]
+    public static var green_normal_png:Class;
+    [Embed(source="../../resources/images/green_press.png")]
+    public static var green_press_png:Class;
+
+// ------------- Silver
+
+
+
+}
+}
