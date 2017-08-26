@@ -9,7 +9,7 @@ import flash.display.BitmapData;
 public class Images {
 
     public static function getBitmapData(className:Class):BitmapData {
-        var inst = new className();
+        var inst:Object = new className();
         if (inst is Bitmap) {
             return Bitmap(inst).bitmapData;
         } else {

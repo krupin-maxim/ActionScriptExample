@@ -34,7 +34,7 @@ public class SimpleSlice9Skin extends SimpleBaseSkin {
     /**
      * Draw skins's bitmap on sprite with slice9 method
      */
-    override public function draw(onSprite:Sprite, withWidth:Number, withHeight:Number) {
+    override public function draw(onSprite:Sprite, withWidth:Number, withHeight:Number):void {
         if (onSprite == null) {
             trace("SimpleSlice9Skin: onSprite is null");
             return;
@@ -78,6 +78,7 @@ public class SimpleSlice9Skin extends SimpleBaseSkin {
             }
         }
 
+        onSprite.graphics.clear();
         onSprite.graphics.beginBitmapFill(lastDrawnBitmapData, /*matrix:*/null, /*repeat:*/false, /*smooth:*/true);
         onSprite.graphics.drawRect(/*x:*/0, /*y:*/0, lastDrawnBitmapData.width, lastDrawnBitmapData.height);
         onSprite.graphics.endFill();
