@@ -1,5 +1,6 @@
 package resources {
 import flash.display.Bitmap;
+import flash.display.BitmapData;
 
 /**
  * This class contains all images from "../../resources/images"
@@ -7,8 +8,13 @@ import flash.display.Bitmap;
  */
 public class Images {
 
-    public static function getImage(name:Class):Bitmap {
-        return new name();
+    public static function getBitmapData(className:Class):BitmapData {
+        var inst = new className();
+        if (inst is Bitmap) {
+            return Bitmap(inst).bitmapData;
+        } else {
+            throw Error("Wrong class name for bitmap");
+        }
     }
 
 // ------------- Common

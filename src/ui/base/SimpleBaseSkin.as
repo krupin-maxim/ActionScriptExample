@@ -3,22 +3,26 @@ import flash.display.BitmapData;
 import flash.display.Sprite;
 
 /**
- * SimpleBaseSkin wraps bitmapData and draw it on any sprite's graphic with draw method
+ * SimpleBaseSkin wraps origBitmapData and draw it on any sprite's graphic with draw method
  */
 public class SimpleBaseSkin {
 
-    protected var bitmapData: BitmapData;
+    protected var origBitmapData: BitmapData;
 
     public function SimpleBaseSkin(bitmapData:BitmapData) {
-        this.bitmapData = bitmapData;
+        this.origBitmapData = bitmapData;
     }
 
     /**
      * Please override it
-     * @param onSprite target sprite
+     * We need drawWidth and drawHeight, because empty child-free sprite have zero size
+     * @param onSprite target sprite for drawing
+     * @param withWidth width for bitmapData size
+     * @param withHeight height for bitmapData size
      */
-    public function draw(onSprite: Sprite) {
+    public function draw(onSprite: Sprite, withWidth: Number, withHeight: Number) {
         // You can throw Error here for make class abstract, but I think it's normal to do nothing here
+        trace("SimpleBaseSkin: You use skin without draw rules");
     }
 
 }
