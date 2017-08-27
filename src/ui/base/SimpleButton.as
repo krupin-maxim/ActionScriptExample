@@ -17,11 +17,11 @@ public class SimpleButton extends Sprite {
     private var pressSkin:SimpleBaseSkin;
     private var disableSkin:SimpleBaseSkin;
 
-    private var content: DisplayObject;
+    private var content:DisplayObject;
 
-    private var pressed: Boolean = false;
-    private var hovered: Boolean = false;
-    private var disabled: Boolean = false;
+    private var pressed:Boolean = false;
+    private var hovered:Boolean = false;
+    private var disabled:Boolean = false;
 
     /**
      * @param content is DisplayObject, because all we need is just width/height
@@ -43,6 +43,8 @@ public class SimpleButton extends Sprite {
         this.addEventListener(MouseEvent.ROLL_OVER, mouseRollOverHandler);
         this.addEventListener(MouseEvent.ROLL_OUT, mouseRollOutHandler);
     }
+
+    // -------------------- Skins
 
     public function setNormalSkin(skin:SimpleBaseSkin):SimpleButton {
         this.normalSkin = skin;
@@ -67,6 +69,8 @@ public class SimpleButton extends Sprite {
         return this;
     }
 
+    // ------------------- Mouse Handlers
+
     private function mouseDownHandler(e:MouseEvent):void {
         if (this.disabled || this.pressed) {
             return;
@@ -75,7 +79,7 @@ public class SimpleButton extends Sprite {
         switchSkin(this.pressSkin)
     }
 
-    private function mouseUpHandler(e:MouseEvent):void  {
+    private function mouseUpHandler(e:MouseEvent):void {
         if (this.disabled || !this.pressed) {
             return;
         }
@@ -104,23 +108,7 @@ public class SimpleButton extends Sprite {
         switchSkin(this.normalSkin);
     }
 
-    private function recognizeSkinState():void {
-        if (this.disabled) {
-            switchSkin(this.disableSkin);
-            return;
-        }
-        if (this.pressed) {
-            switchSkin(this.pressSkin);
-            return;
-        }
-        if (this.hoverSkin) {
-            switchSkin(this.hoverSkin);
-            return;
-        }
-        switchSkin(this.normalSkin);
-    }
-
-    private function switchSkin(skin: SimpleBaseSkin):void {
+    private function switchSkin(skin:SimpleBaseSkin):void {
         if (skin != null && content != null) {
             skin.draw(this, content.width, content.height);
         }
