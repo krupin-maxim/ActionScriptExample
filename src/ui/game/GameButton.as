@@ -1,6 +1,7 @@
 package ui.game {
 
 import flash.display.Bitmap;
+import flash.display.BitmapData;
 
 import resources.Images;
 import resources.Skins;
@@ -21,47 +22,69 @@ public class GameButton extends SimpleButton {
         // It is possible to make creation components more beautiful with DSL-simulation
         textFiled = new GameTextField()
                 .setGameButtonStyle()
-                .setText("10");
-
-        icon = Images.getBitmap(Images.icon_gold_png);
+                .setText(" ");
 
         textIconGroup = new SimpleGroup(/*childPad*/0, /*isVertical*/false);
         textIconGroup.addChild(textFiled);
-        textIconGroup.addChild(icon);
 
-        textIconSizeBox = new SimpleSizeBox(textIconGroup, 160, /*padLeft*/40, /*padTop*/20, /*padRight*/40, /*padBottom*/20);
+        textIconSizeBox = new SimpleSizeBox(textIconGroup, /*minContentWidth*/160, /*padLeft*/40, /*padTop*/20, /*padRight*/40, /*padBottom*/20);
         super(textIconSizeBox);
 
         refresh();
     }
 
-    // ---------------------- Styles
+    // ---------------------- Game styles
 
     public function setGoldStyle():void {
         this.setNormalSkin(Skins.goldNormal)
                 .setHoverSkin(Skins.goldHover)
                 .setPressSkin(Skins.goldPress)
-                .setDisableSkin(Skins.goldDisable);
+                .setDisableSkin(Skins.goldDisable, Skins.overDisable);
     }
 
     public function setGreenStyle():void {
         this.setNormalSkin(Skins.greenNormal)
                 .setHoverSkin(Skins.greenHover)
                 .setPressSkin(Skins.greenPress)
-                .setDisableSkin(Skins.greenDisable);
+                .setDisableSkin(Skins.greenDisable, Skins.overDisable);
     }
 
     public function setSilverStyle():void {
         this.setNormalSkin(Skins.silverNormal)
                 .setHoverSkin(Skins.silverHover)
                 .setPressSkin(Skins.silverPress)
-                .setDisableSkin(Skins.silverDisable);
+                .setDisableSkin(Skins.silverDisable, Skins.overDisable);
+    }
+
+    // ---------------------- Game Icons
+
+    public function setExperienceIcon():void {
+        setIcon(Images.getBitmap(Images.icon_experience_png));
+    }
+
+    public function setGoldIcon():void {
+        setIcon(Images.getBitmap(Images.icon_gold_png));
+    }
+
+    public function setSilverIcon():void {
+        setIcon(Images.getBitmap(Images.icon_silver_png));
     }
 
     // ----------------------
 
     public function setText(value: String):void {
         textFiled.setText(value);
+        refresh();
+    }
+
+    public function setIcon(bitmap:Bitmap):void {
+        if (icon != null) {
+            textIconGroup.removeChild(icon);
+        }
+        icon = bitmap;
+        if (icon != null) {
+            textIconGroup.addChild(icon);
+        }
         refresh();
     }
 

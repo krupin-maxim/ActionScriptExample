@@ -17,12 +17,16 @@ public class GameTextField extends TextField {
         this.mouseEnabled = false;
     }
 
+    // ------------------- Game Styles
+
     public function setGameButtonStyle():GameTextField {
         textFormat.size = 12;
         textFormat.color = 0xFFFFFF; // In real world it must be constant
         this.defaultTextFormat = textFormat;
         return this;
     }
+
+    // --------------------
 
     public function setText(value:String):GameTextField {
         this.text = value;

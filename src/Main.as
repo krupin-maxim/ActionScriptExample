@@ -35,10 +35,14 @@ public class Main extends Sprite {
         secondButton.setGreenStyle();
         secondButton.y = 100;
 
+        var isDisabled: Boolean = true;
 
         secondButton.addEventListener(MouseEvent.CLICK, function (event:MouseEvent) {
             text += " 000";
             firstButton.setText(text);
+            isDisabled = text.length > 6;
+            firstButton.setDisabled(isDisabled);
+            firstButton.setGoldIcon();
         });
 
         addChild(secondButton);

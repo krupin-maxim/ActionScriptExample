@@ -15,10 +15,11 @@ public class SimpleButton extends Sprite {
     private var hoverSkin:SimpleBaseSkin;
     private var pressSkin:SimpleBaseSkin;
     private var disableSkin:SimpleBaseSkin;
+    private var overDisableSkin: SimpleBaseSkin;
 
     private var content:DisplayObject;
+    private var overDisableSprite:Sprite;
 
-    // TODO: possible for enums
     private var pressed:Boolean = false;
     private var hovered:Boolean = false;
     private var disabled:Boolean = false;
@@ -30,17 +31,29 @@ public class SimpleButton extends Sprite {
         this.mouseChildren = false;
         this.buttonMode = true;
         this.useHandCursor = true;
-        this.mouseEnabled = true;
 
         if (content != null) {
             this.content = content;
             this.addChild(content);
         }
+        setDisabled(false);
+    }
 
-        this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
-        this.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
-        this.addEventListener(MouseEvent.ROLL_OVER, mouseRollOverHandler);
-        this.addEventListener(MouseEvent.ROLL_OUT, mouseRollOutHandler);
+    public function setDisabled(isDisabled:Boolean):void {
+        if (isDisabled == this.disabled) {
+            return;
+        }
+        this.disabled = isDisabled;
+        this.mouseEnabled = !isDisabled;
+        if (overDisableSprite != null) {
+            overDisableSprite.visible = isDisabled;
+        }
+        if (isDisabled) {
+            unsubscribeMouseEvents();
+        } else {
+            subscribeMouseEvent();
+        }
+        refresh();
     }
 
     // -------------------- Skins
@@ -63,48 +76,75 @@ public class SimpleButton extends Sprite {
         return this;
     }
 
-    public function setDisableSkin(skin:SimpleBaseSkin):SimpleButton {
-        this.disableSkin = disableSkin;
+    public function setDisableSkin(bgSkin:SimpleBaseSkin, overSkin:SimpleBaseSkin = null):SimpleButton {
+        this.disableSkin = bgSkin;
+        if (overSkin != null) {
+            this.overDisableSkin = overSkin;
+            overDisableSprite = new Sprite();
+            this.addChild(overDisableSprite);
+        }
         return this;
     }
 
     // ------------------- Mouse Handlers
 
+    private function subscribeMouseEvent():void {
+        this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+        this.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+        this.addEventListener(MouseEvent.ROLL_OVER, mouseRollOverHandler);
+        this.addEventListener(MouseEvent.ROLL_OUT, mouseRollOutHandler);
+    }
+
+    private function unsubscribeMouseEvents():void {
+        this.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+        this.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+        this.removeEventListener(MouseEvent.ROLL_OVER, mouseRollOverHandler);
+        this.removeEventListener(MouseEvent.ROLL_OUT, mouseRollOutHandler);
+    }
+
     private function mouseDownHandler(e:MouseEvent):void {
-        if (this.disabled || this.pressed) {
+        if (this.pressed) {
             return;
         }
         this.pressed = true;
-        switchSkin(this.pressSkin)
+        if (!this.disabled) {
+            switchSkin(this.pressSkin)
+        }
     }
 
     private function mouseUpHandler(e:MouseEvent):void {
-        if (this.disabled || !this.pressed) {
+        if (!this.pressed) {
             return;
         }
         this.pressed = false;
-        if (this.hovered) {
-            switchSkin(this.hoverSkin);
-        } else {
-            switchSkin(this.normalSkin);
+        if (!this.disabled) {
+            if (this.hovered) {
+                switchSkin(this.hoverSkin);
+            } else {
+                switchSkin(this.normalSkin);
+            }
         }
     }
 
     private function mouseRollOverHandler(e:MouseEvent):void {
-        if (this.disabled || this.hovered) {
+        if (this.hovered) {
             return;
         }
         this.hovered = true;
-        switchSkin(this.hoverSkin);
+        if (!this.disabled) {
+            switchSkin(this.hoverSkin);
+        }
     }
 
     private function mouseRollOutHandler(e:MouseEvent):void {
-        if (this.disabled || !this.hovered) {
+        if (!this.hovered) {
             return;
         }
         this.hovered = false;
         this.pressed = false;
-        switchSkin(this.normalSkin);
+        if (!this.disabled) {
+            switchSkin(this.normalSkin);
+        }
     }
 
     private function switchSkin(skin:SimpleBaseSkin):void {
@@ -119,9 +159,11 @@ public class SimpleButton extends Sprite {
      * Change self-size by content content-size
      */
     protected function refresh():void {
-        // TODO: maybe switch-case
         if (this.disabled) {
             switchSkin(this.disableSkin);
+            if (overDisableSkin != null && overDisableSprite != null && content != null) {
+                overDisableSkin.draw(overDisableSprite, content.width, content.height)
+            }
             return;
         }
         if (this.pressed) {
