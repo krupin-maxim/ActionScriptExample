@@ -1,5 +1,5 @@
 
-package ui.game {
+package ui.game.model {
 
 public class IconTypeEnum/*int*/ {
 

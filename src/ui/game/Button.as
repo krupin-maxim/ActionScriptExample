@@ -9,14 +9,20 @@ import resources.Skins;
 import ui.base.widgets.SimpleButton;
 import ui.base.widgets.SimpleGroup;
 import ui.base.widgets.SimpleSizeBox;
+import ui.game.style.StyledTextField;
 
+/**
+ * Button for game with text and icon. It can be customized with preset style: gold, green, silver
+ * Icon can be customised with preset: experience, gold, silver
+ * It has minWidth of content and disabled style
+ */
 public class Button extends SimpleButton {
 
-    private var textFiled: StyledTextField;
-    private var icon: Bitmap;
+    private var textFiled:StyledTextField;
+    private var icon:Bitmap;
 
-    private var textIconSizeBox: SimpleSizeBox;
-    private var textIconGroup: SimpleGroup;
+    private var textIconSizeBox:SimpleSizeBox;
+    private var textIconGroup:SimpleGroup;
 
     public function Button() {
         // It is possible to make creation components more beautiful with DSL-simulation
@@ -30,6 +36,17 @@ public class Button extends SimpleButton {
         textIconSizeBox = new SimpleSizeBox(textIconGroup, /*minContentWidth*/160, /*padLeft*/40, /*padTop*/20, /*padRight*/40, /*padBottom*/20);
         super(textIconSizeBox);
 
+        refresh();
+    }
+
+    // ---------------------- Game methods
+
+    public function setPrice(value:int):void {
+        setText(value.toString());
+    }
+
+    public function setMinWidth(value:int):void {
+        textIconSizeBox.setMinWidth(value);
         refresh();
     }
 
@@ -70,9 +87,9 @@ public class Button extends SimpleButton {
         setIcon(Images.getBitmap(Images.icon_silver_png));
     }
 
-    // ----------------------
+    // ---------------------- Common methods
 
-    public function setText(value: String):void {
+    public function setText(value:String):void {
         textFiled.setText(value);
         refresh();
     }

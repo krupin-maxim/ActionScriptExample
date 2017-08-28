@@ -1,4 +1,4 @@
-package ui.game {
+package ui.game.style {
 
 import flash.text.TextField;
 import flash.text.TextFormat;

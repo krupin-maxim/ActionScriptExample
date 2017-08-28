@@ -1,23 +1,11 @@
 package {
 
 import flash.display.Sprite;
-import flash.events.MouseEvent;
-import flash.text.Font;
-import flash.text.TextField;
-import flash.text.TextFormat;
 
-import resources.Fonts;
-
-import resources.Skins;
-
-import ui.base.widgets.SimpleButton;
-import ui.base.widgets.SimpleGroup;
-import ui.game.Button;
-import ui.game.ButtonStyleEnum;
-import ui.game.ButtonVO;
 import ui.game.ButtonsGroup;
-import ui.game.IconTypeEnum;
-import ui.game.StyledTextField;
+import ui.game.model.ButtonStyleEnum;
+import ui.game.model.ButtonVO;
+import ui.game.model.IconTypeEnum;
 
 public class Main extends Sprite {
 

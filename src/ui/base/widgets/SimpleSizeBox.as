@@ -34,6 +34,11 @@ public class SimpleSizeBox extends Sprite{
         doLayout();
     }
 
+    public function setMinWidth(value: int):void {
+        minContentWidth = value;
+        doLayout();
+    }
+
     public function doLayout():void {
         if (content != null) {
             if (content.width >= minContentWidth) {

@@ -1,4 +1,4 @@
-package ui.game {
+package ui.game.model {
 
 /**
  *

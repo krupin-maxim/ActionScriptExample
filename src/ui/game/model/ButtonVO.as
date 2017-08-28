@@ -1,4 +1,5 @@
-package ui.game {
+package ui.game.model {
+import ui.game.*;
 
 public class ButtonVO {
 
