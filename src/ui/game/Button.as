@@ -6,21 +6,21 @@ import flash.display.BitmapData;
 import resources.Images;
 import resources.Skins;
 
-import ui.base.SimpleButton;
-import ui.base.SimpleGroup;
-import ui.base.SimpleSizeBox;
+import ui.base.widgets.SimpleButton;
+import ui.base.widgets.SimpleGroup;
+import ui.base.widgets.SimpleSizeBox;
 
-public class GameButton extends SimpleButton {
+public class Button extends SimpleButton {
 
-    private var textFiled: GameTextField;
+    private var textFiled: StyledTextField;
     private var icon: Bitmap;
 
     private var textIconSizeBox: SimpleSizeBox;
     private var textIconGroup: SimpleGroup;
 
-    public function GameButton() {
+    public function Button() {
         // It is possible to make creation components more beautiful with DSL-simulation
-        textFiled = new GameTextField()
+        textFiled = new StyledTextField()
                 .setGameButtonStyle()
                 .setText(" ");
 

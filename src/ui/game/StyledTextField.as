@@ -5,11 +5,14 @@ import flash.text.TextFormat;
 
 import resources.Fonts;
 
-public class GameTextField extends TextField {
+/**
+ * TextField with customized font
+ */
+public class StyledTextField extends TextField {
 
     private var textFormat: TextFormat = Fonts.getGameTextFormat();
 
-    public function GameTextField() {
+    public function StyledTextField() {
         super();
         this.embedFonts = true;
         this.defaultTextFormat = textFormat;
@@ -19,7 +22,7 @@ public class GameTextField extends TextField {
 
     // ------------------- Game Styles
 
-    public function setGameButtonStyle():GameTextField {
+    public function setGameButtonStyle():StyledTextField {
         textFormat.size = 12;
         textFormat.color = 0xFFFFFF; // In real world it must be constant
         this.defaultTextFormat = textFormat;
@@ -28,7 +31,7 @@ public class GameTextField extends TextField {
 
     // --------------------
 
-    public function setText(value:String):GameTextField {
+    public function setText(value:String):StyledTextField {
         this.text = value;
         this.width = this.textWidth + 4; // It is complicated feature of flash, but in our case it is enough
         this.height = this.textHeight + 4;

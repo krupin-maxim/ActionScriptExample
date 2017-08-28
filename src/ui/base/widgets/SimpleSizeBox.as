@@ -1,4 +1,4 @@
-package ui.base {
+package ui.base.widgets {
 
 import flash.display.DisplayObject;
 import flash.display.Sprite;

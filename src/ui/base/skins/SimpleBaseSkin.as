@@ -1,4 +1,4 @@
-package ui.base {
+package ui.base.skins {
 import flash.display.BitmapData;
 import flash.display.Sprite;
 

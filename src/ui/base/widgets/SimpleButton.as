@@ -1,9 +1,11 @@
-package ui.base {
+package ui.base.widgets {
 
 import flash.display.DisplayObject;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
+
+import ui.base.skins.SimpleBaseSkin;
 
 /**
  * Button with any content. It can do all buttons stuff: handle mouse events, working with skins
@@ -22,7 +24,7 @@ public class SimpleButton extends Sprite {
 
     private var pressed:Boolean = false;
     private var hovered:Boolean = false;
-    private var disabled:Boolean = false;
+    private var disabled:Boolean = true;
 
     /**
      * @param content is DisplayObject, because all we need is just width/height

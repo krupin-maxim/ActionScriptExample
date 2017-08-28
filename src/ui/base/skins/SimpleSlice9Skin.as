@@ -1,9 +1,11 @@
-package ui.base {
+package ui.base.skins {
 import flash.display.BitmapData;
 import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
 import flash.geom.Matrix;
 import flash.geom.Rectangle;
+
+import ui.base.skins.SimpleBaseSkin;
 
 /**
  * SimpleSlice9Skin wraps origBitmapData and draw it on any sprite's graphic with slice9 method

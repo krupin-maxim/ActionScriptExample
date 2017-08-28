@@ -1,4 +1,4 @@
-package ui.base {
+package ui.base.widgets {
 
 import flash.display.DisplayObject;
 import flash.display.Sprite;
@@ -28,6 +28,40 @@ public class SimpleGroup extends Sprite {
         this.padRight = padRight;
         this.padBottom = padBottom;
     }
+
+    // --------------- Configuration
+
+    public function setChildPad(value: int):void {
+        this.childPad = value;
+        doLayout();
+    }
+
+    public function setPadLeft(value:int):void {
+        this.padLeft = value;
+        doLayout();
+    }
+
+    public function setPadTop(value:int):void {
+        this.padTop = value;
+        doLayout();
+    }
+
+    public function setPadRight(value:int):void {
+        this.padRight = value;
+        doLayout();
+    }
+
+    public function setPadBottom(value:int):void {
+        this.padBottom = value;
+        doLayout();
+    }
+
+    public function setVertical(isVertical:Boolean):void {
+        this.isVertical = isVertical;
+        doLayout();
+    }
+
+    // ---------------
 
     public function doLayout():void {
         if (isVertical) {
@@ -96,6 +130,8 @@ public class SimpleGroup extends Sprite {
         }
         contentWidth = padLeft + maxChildWidth + padRight;
     }
+
+    // ------------------ Overrides
 
     override public function get width():Number {
         return contentWidth;

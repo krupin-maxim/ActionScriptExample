@@ -10,49 +10,28 @@ import resources.Fonts;
 
 import resources.Skins;
 
-import ui.base.SimpleButton;
-import ui.base.SimpleGroup;
-import ui.game.GameButton;
-import ui.game.GameTextField;
+import ui.base.widgets.SimpleButton;
+import ui.base.widgets.SimpleGroup;
+import ui.game.Button;
+import ui.game.ButtonStyleEnum;
+import ui.game.ButtonVO;
+import ui.game.ButtonsGroup;
+import ui.game.IconTypeEnum;
+import ui.game.StyledTextField;
 
 public class Main extends Sprite {
 
 
     public function Main() {
-        var text:String = "10";
+        var buttonVOs:Vector.<ButtonVO> = Vector.<ButtonVO>([
+                new ButtonVO("10", ButtonStyleEnum.GOLD, IconTypeEnum.GOLD),
+                new ButtonVO("1 000", ButtonStyleEnum.SILVER, IconTypeEnum.EXPERIENCE),
+                new ButtonVO("1 000 000", ButtonStyleEnum.GREEN, IconTypeEnum.SILVER),
 
-        var firstButton:GameButton = new GameButton();
-        firstButton.setGoldStyle();
+        ]);
 
-        firstButton.addEventListener(MouseEvent.CLICK, function (event:MouseEvent) {
-            text = text.slice(0, text.length - 4);
-            firstButton.setText(text);
-        });
-
-        addChild(firstButton);
-
-        var secondButton:GameButton = new GameButton();
-        secondButton.setGreenStyle();
-        secondButton.y = 100;
-
-        var isDisabled: Boolean = true;
-
-        secondButton.addEventListener(MouseEvent.CLICK, function (event:MouseEvent) {
-            text += " 000";
-            firstButton.setText(text);
-            isDisabled = text.length > 6;
-            firstButton.setDisabled(isDisabled);
-            firstButton.setGoldIcon();
-        });
-
-        addChild(secondButton);
-
-
-        var buttonsGroup:SimpleGroup = new SimpleGroup(-10, true, 50, 50, 50, 50);
-        buttonsGroup.addChild(firstButton);
-        buttonsGroup.addChild(secondButton);
-        buttonsGroup.doLayout();
-
+        var buttonsGroup: ButtonsGroup = new ButtonsGroup();
+        buttonsGroup.setDataProvider(buttonVOs);
         addChild(buttonsGroup);
     }
 }
