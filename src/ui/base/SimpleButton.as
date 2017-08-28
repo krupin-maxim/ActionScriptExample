@@ -11,7 +11,6 @@ import flash.events.MouseEvent;
  */
 public class SimpleButton extends Sprite {
 
-
     private var normalSkin:SimpleBaseSkin;
     private var hoverSkin:SimpleBaseSkin;
     private var pressSkin:SimpleBaseSkin;
@@ -19,6 +18,7 @@ public class SimpleButton extends Sprite {
 
     private var content:DisplayObject;
 
+    // TODO: possible for enums
     private var pressed:Boolean = false;
     private var hovered:Boolean = false;
     private var disabled:Boolean = false;
@@ -35,7 +35,6 @@ public class SimpleButton extends Sprite {
         if (content != null) {
             this.content = content;
             this.addChild(content);
-//            this.content.visible = false;
         }
 
         this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
@@ -112,6 +111,28 @@ public class SimpleButton extends Sprite {
         if (skin != null && content != null) {
             skin.draw(this, content.width, content.height);
         }
+    }
+
+    // ------------------- Content
+
+    /**
+     * Change self-size by content content-size
+     */
+    protected function refresh():void {
+        // TODO: maybe switch-case
+        if (this.disabled) {
+            switchSkin(this.disableSkin);
+            return;
+        }
+        if (this.pressed) {
+            switchSkin(this.pressSkin);
+            return;
+        }
+        if (this.hovered) {
+            switchSkin(this.hoverSkin);
+            return;
+        }
+        switchSkin(this.normalSkin);
     }
 
 }

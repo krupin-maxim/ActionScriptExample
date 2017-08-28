@@ -8,14 +8,21 @@ import flash.display.BitmapData;
  */
 public class Images {
 
-    public static function getBitmapData(className:Class):BitmapData {
+    public static function getBitmap(className:Class):Bitmap {
         var inst:Object = new className();
         if (inst is Bitmap) {
-            return Bitmap(inst).bitmapData;
+            return Bitmap(inst);
         } else {
             throw Error("Wrong class name for bitmap");
         }
     }
+
+    public static function getBitmapData(className:Class):BitmapData {
+        var bitmap:Bitmap = getBitmap(className);
+        return bitmap != null ? bitmap.bitmapData : null;
+    }
+
+
 
 // ------------- Common
 

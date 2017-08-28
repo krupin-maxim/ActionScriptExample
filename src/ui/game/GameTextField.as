@@ -1,8 +1,5 @@
 package ui.game {
 
-import flash.text.Font;
-import flash.text.FontStyle;
-import flash.text.FontType;
 import flash.text.TextField;
 import flash.text.TextFormat;
 
@@ -21,8 +18,8 @@ public class GameTextField extends TextField {
     }
 
     public function setGameButtonStyle():GameTextField {
-        textFormat.size = 80;
-        textFormat.color = 0xF00FFF; // In real world it must be constant
+        textFormat.size = 12;
+        textFormat.color = 0xFFFFFF; // In real world it must be constant
         this.defaultTextFormat = textFormat;
         return this;
     }
@@ -31,8 +28,6 @@ public class GameTextField extends TextField {
         this.text = value;
         this.width = this.textWidth + 4; // It is complicated feature of flash, but in our case it is enough
         this.height = this.textHeight + 4;
-        trace("GameTextField: ", this.width, this.textWidth);
-        trace("GameTextField: ", this.height, this.textHeight);
         return this;
     }
 
