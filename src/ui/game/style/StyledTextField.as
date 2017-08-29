@@ -32,7 +32,7 @@ public class StyledTextField extends TextField {
     // --------------------
 
     public function setText(value:String):StyledTextField {
-        this.text = value;
+        this.text = this.text = value != null ? value : "";;
         this.width = this.textWidth + 4; // It is complicated feature of flash, but in our case it is enough
         this.height = this.textHeight + 4;
         return this;
