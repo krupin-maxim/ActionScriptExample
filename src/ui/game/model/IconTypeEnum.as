@@ -1,19 +1,22 @@
 
 package ui.game.model {
 
-public class IconTypeEnum/*int*/ {
+/**
+ * Enum for icon type in Button
+ */
+public class IconTypeEnum/*String*/ {
 
-    public static const EXPERIENCE:IconTypeEnum = new IconTypeEnum(0);
-    public static const GOLD:IconTypeEnum = new IconTypeEnum(1);
-    public static const  SILVER:IconTypeEnum = new IconTypeEnum(2);
+    public static const EXPERIENCE:IconTypeEnum = new IconTypeEnum("Exp");
+    public static const GOLD:IconTypeEnum = new IconTypeEnum("Gold");
+    public static const  SILVER:IconTypeEnum = new IconTypeEnum("Silver");
 
-    private var rawValue:int;
+    private var rawValue:String;
 
-    public function IconTypeEnum(rawValue:int) {
+    public function IconTypeEnum(rawValue:String) {
         this.rawValue = rawValue;
     }
 
-    public function getRawValue():int {
+    public function getRawValue():String {
         return this.rawValue;
     }
 }

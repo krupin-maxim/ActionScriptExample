@@ -4,6 +4,9 @@ import flash.display.Sprite;
 
 import ui.base.skins.SimpleBaseSkin;
 
+/**
+ * SimpleFillSkin just filling graphics in sprite
+ */
 public class SimpleFillSkin extends SimpleBaseSkin {
 
     private var padHor:int = 0;

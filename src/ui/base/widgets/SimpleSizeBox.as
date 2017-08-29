@@ -30,6 +30,8 @@ public class SimpleSizeBox extends Sprite{
 
         if (content != null) {
             this.addChild(content);
+        } else {
+            trace("SimpleSizeBox: content is null");
         }
         doLayout();
     }

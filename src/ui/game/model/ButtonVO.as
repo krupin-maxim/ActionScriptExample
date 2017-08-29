@@ -1,6 +1,8 @@
 package ui.game.model {
-import ui.game.*;
 
+/**
+ * Value-object for creating button in ButtonsGroup
+ */
 public class ButtonVO {
 
     private var labelValue: String;

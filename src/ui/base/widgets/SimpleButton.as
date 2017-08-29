@@ -13,15 +13,19 @@ import ui.base.skins.SimpleBaseSkin;
  */
 public class SimpleButton extends Sprite {
 
+    // Skins for background
     private var normalSkin:SimpleBaseSkin;
     private var hoverSkin:SimpleBaseSkin;
     private var pressSkin:SimpleBaseSkin;
     private var disableSkin:SimpleBaseSkin;
+    // Skin for over sprite, for disable mode
     private var overDisableSkin: SimpleBaseSkin;
 
+    // Layers in button
     private var content:DisplayObject;
     private var overDisableSprite:Sprite;
 
+    // States of button
     private var pressed:Boolean = false;
     private var hovered:Boolean = false;
     private var disabled:Boolean = true;
@@ -37,6 +41,8 @@ public class SimpleButton extends Sprite {
         if (content != null) {
             this.content = content;
             this.addChild(content);
+        } else {
+            trace("SimpleButton: content is null");
         }
         setDisabled(false);
     }
